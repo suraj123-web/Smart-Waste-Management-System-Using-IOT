@@ -1,103 +1,140 @@
-import Image from "next/image";
+import { AlertTriangle, BarChart3, CheckCircle2, Clock3, MapPin, Recycle, Trash2, Truck } from "lucide-react";
+
+const kpiCards = [
+  {
+    title: "Total Bins",
+    value: "128",
+    trend: "+6 this week",
+    icon: Trash2,
+  },
+  {
+    title: "Collections Completed",
+    value: "342",
+    trend: "+12% vs last week",
+    icon: CheckCircle2,
+  },
+  {
+    title: "Average Fill Level",
+    value: "64%",
+    trend: "Stable",
+    icon: BarChart3,
+  },
+  {
+    title: "Critical Alerts",
+    value: "9",
+    trend: "Needs attention",
+    icon: AlertTriangle,
+  },
+];
+
+const zoneStatus = [
+  { zone: "North Zone", fillLevel: "72%", pickupEta: "1h 10m", status: "Priority" },
+  { zone: "Central Zone", fillLevel: "58%", pickupEta: "2h 05m", status: "On schedule" },
+  { zone: "West Zone", fillLevel: "80%", pickupEta: "40m", status: "Priority" },
+  { zone: "Industrial Zone", fillLevel: "46%", pickupEta: "3h 20m", status: "On schedule" },
+];
+
+const truckStatus = [
+  { id: "Truck-01", route: "North - Central", load: "70%", lastUpdate: "5 min ago" },
+  { id: "Truck-02", route: "West - Industrial", load: "55%", lastUpdate: "2 min ago" },
+  { id: "Truck-03", route: "Central - East", load: "63%", lastUpdate: "8 min ago" },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100 sm:px-8 lg:px-14">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <header className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <p className="text-sm font-medium text-emerald-300">Smart Waste Management System</p>
+          <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Operations Dashboard</h1>
+          <p className="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
+            Monitor bin fill levels, optimize pickup routes, and track fleet activity in one systematic control panel.
+          </p>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {kpiCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <article
+                key={card.title}
+                className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-slate-300">{card.title}</p>
+                  <Icon className="h-5 w-5 text-emerald-300" />
+                </div>
+                <p className="mt-3 text-3xl font-semibold">{card.value}</p>
+                <p className="mt-1 text-xs text-slate-400">{card.trend}</p>
+              </article>
+            );
+          })}
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <article className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+            <h2 className="text-lg font-semibold">Zone Health Overview</h2>
+            <p className="mt-1 text-sm text-slate-400">Live status grouped by collection zones.</p>
+            <div className="mt-5 space-y-3">
+              {zoneStatus.map((zone) => (
+                <div
+                  key={zone.zone}
+                  className="grid gap-2 rounded-xl border border-slate-800 bg-slate-900 p-4 text-sm sm:grid-cols-4 sm:items-center"
+                >
+                  <div className="flex items-center gap-2 font-medium">
+                    <MapPin className="h-4 w-4 text-emerald-300" />
+                    {zone.zone}
+                  </div>
+                  <p>Fill Level: {zone.fillLevel}</p>
+                  <p className="flex items-center gap-2 text-slate-300">
+                    <Clock3 className="h-4 w-4" />
+                    ETA: {zone.pickupEta}
+                  </p>
+                  <span
+                    className={`inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-medium ${
+                      zone.status === "Priority"
+                        ? "bg-amber-200/20 text-amber-300"
+                        : "bg-emerald-200/20 text-emerald-300"
+                    }`}
+                  >
+                    {zone.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+            <h2 className="text-lg font-semibold">Fleet Activity</h2>
+            <p className="mt-1 text-sm text-slate-400">Current truck loads and route allocations.</p>
+            <div className="mt-5 space-y-3">
+              {truckStatus.map((truck) => (
+                <div key={truck.id} className="rounded-xl border border-slate-800 bg-slate-900 p-4">
+                  <div className="flex items-center justify-between">
+                    <p className="flex items-center gap-2 font-medium">
+                      <Truck className="h-4 w-4 text-emerald-300" />
+                      {truck.id}
+                    </p>
+                    <span className="rounded-full bg-sky-200/20 px-2.5 py-1 text-xs text-sky-300">
+                      Load {truck.load}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm text-slate-300">Route: {truck.route}</p>
+                  <p className="mt-1 text-xs text-slate-400">Updated {truck.lastUpdate}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </section>
+
+        <footer className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/50 p-4 text-sm text-slate-300">
+          <p className="flex items-center gap-2">
+            <Recycle className="h-4 w-4 text-emerald-300" />
+            Data refresh interval: 60 seconds
+          </p>
+          <p>Last synchronized: 10:45 AM</p>
+        </footer>
+      </div>
     </div>
   );
 }
